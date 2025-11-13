@@ -1,9 +1,14 @@
-/** Button that attempts to use the token in context when clicked */
+import { useAuth } from "./AuthContext";
+
 export default function Tablet() {
-  // TODO: call authenticate when form is submitted
+  const { authenticate } = useAuth();
+
+  async function handleClick() {
+    await authenticate(); // this moves you to the TUNNEL screen
+  }
 
   return (
-    <section>
+    <div>
       <p>
         The sound of your name thuds against the gate as the two badgers furrow
         their brows. The badger on the right beckons you to approach.
@@ -16,9 +21,8 @@ export default function Tablet() {
       <p>
         It holds out a rectangular stone tablet carved with an intricate design.
       </p>
-      <form>
-        <button>Place your palm upon the tablet.</button>
-      </form>
-    </section>
+
+      <button onClick={handleClick}>Place your palm upon the tablet.</button>
+    </div>
   );
 }
